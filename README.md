@@ -80,6 +80,7 @@ Gambar .2 after missing value
 Pada Gambar .2  merupakan dataset yang sudah clean tanpa adanya missing value didalamnya dengan total entries berikut
 
 ![total_clean](https://user-images.githubusercontent.com/73319544/192696755-bb1b6727-7156-4d5f-8fd7-52a011ea324f.png)
+
 Gambar .3 data clean
 
 - Visualisasi Setiap Movie kebanyakan memiliki genre Movie sebagai berikut 
