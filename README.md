@@ -123,53 +123,61 @@ Content Based Filtering merekomendasikan item yang mirip dengan item sebelumnya 
 
 Berikut saya masukkan beberapa title MovieTV yang akan direkomendasikan:
 
-![dinner](https://user-images.githubusercontent.com/73319544/192699401-63b0413c-a08b-45eb-b538-6e832effbd34.png)
+|no|title                                                                                                |genre                                                                                                                        |year   |country |
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |United States       |
+
+Tabel .1 dinner MovieTV
+
+- berikut output dari rekomendasinya film **Dinner**
 
 |no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
-|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |6.0       |
+|1   |Malizia                                                                                      |Comedy                                                                                         |1973  |6.0       |
+|2    |Crooklyn                                                                   |Comedy                                                                  |1994     |8.0      |
+|3   |Manolesta                                                                                    |Comedy                                                                                         |1981  |6.0       |
+|4    |Tsisperi mtebi anu daujerebeli ambavi                                                                    |Comedy                                                                  |1983     |8.0      |
+|5   |Ternosecco                                                                                     |Comedy                                                                                         |1986  |5.0       |
+|6    |Three on a Couch                                                                |Comedy                                                                  |1966     |7.0      |
+|7   |The Search for Santa Paws                                                                                    |Comedy                                                                                         |2010  |5.0       |
+|8    |Who Was That Lady?                                                                  |Comedy                                                                  |1960    |7.0      |
+|9   |Love Aaj Kal                                                                                    |Comedy                                                                                         |2009  |4.0       |
+|10    |Cosi vanna le cose                                                                  |Comedy                                                                  |2008     |3.0      |
 
-Gambar .6 dinner MovieTV
+Tabel .2 dinner rekomendasi
 
-- berikut outputnya dari rekomendasinya
-
-![dinner_rekom](https://user-images.githubusercontent.com/73319544/192699449-db57f452-a5f1-46c4-9e76-99e9d93637a6.png)
-
-Gambar .7 dinner rekomendasi
-
-|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
-|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
-|1   |A Bullet for Joey                                                                                      |Crime                                                                                         |1955  |6.0       |
-|2    |I Wake Up Screaming                                                                   |Crime                                                                  |1941     |8.0      |
-|3   |Tte de turc                                                                                     |Crime                                                                                         |2010  |6.0       |
-|4    |Hunter: Back in Force                                                                    |Crime                                                                  |2003     |4.0      |
-|5   |Roma violenta                                                                                      |Crime                                                                                         |1975  |6.0       |
-|6    |Jack the Ripper                                                                 |Crime                                                                  |1988     |7.0      |
-|7   |MR 73                                                                                     |Crime                                                                                         |2008  |7.0       |
-|8    |Pollisse                                                                   |Crime                                                                  |20011    |7.0      |
-|9   |The Big Easy                                                                                     |Crime                                                                                         |1986  |7.0       |
-|10    |I Walk Alone                                                                   |Crime                                                                  |1948     |6.0      |
 
 ## Evaluation
 pada bagian ini saya mengambil 2 sampel MovieTV yang akan menampilkan rekomendasinya:
 
-|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|no|title                                                                                                |genre                                                                                                                        |year   |country |
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
-|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |6.0       |
+|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |United States       |
 
-Gambar .8 dinner MovieTV
+Tabel .3 dinner MovieTV
 
 - berikut outputnya dari rekomendasinya
 
-![dinner_rekom](https://user-images.githubusercontent.com/73319544/192699449-db57f452-a5f1-46c4-9e76-99e9d93637a6.png)
-
-Gambar .9 dinner rekomendasi
-
 |no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
-|1   |Dead-Bang                                                                                      |Crime                                                                                         |1989  |6.0       |
+|1   |Malizia                                                                                      |Comedy                                                                                         |1973  |6.0       |
+|2    |Crooklyn                                                                   |Comedy                                                                  |1994     |8.0      |
+|3   |Manolesta                                                                                    |Comedy                                                                                         |1981  |6.0       |
+|4    |Tsisperi mtebi anu daujerebeli ambavi                                                                    |Comedy                                                                  |1983     |8.0      |
+|5   |Ternosecco                                                                                     |Comedy                                                                                         |1986  |5.0       |
+|6    |Three on a Couch                                                                |Comedy                                                                  |1966     |7.0      |
+|7   |The Search for Santa Paws                                                                                    |Comedy                                                                                         |2010  |5.0       |
+|8    |Who Was That Lady?                                                                  |Comedy                                                                  |1960    |7.0      |
+|9   |Love Aaj Kal                                                                                    |Comedy                                                                                         |2009  |4.0       |
+|10    |Cosi vanna le cose                                                                  |Comedy                                                                  |2008     |3.0      |
 
-Gambar .10 deadbang MovieTV
+Tabel .4 dinner rekomendasi
+
+|no|title                                                                                                |genre                                                                                                                        |year   |country |
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |Dead-Bang                                                                                      |Crime                                                                                         |1989  |United States       |
+
+Tabel .5 deadbang MovieTV
 
 |no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
@@ -184,9 +192,9 @@ Gambar .10 deadbang MovieTV
 |9   |The Big Easy                                                                                     |Crime                                                                                         |1986  |7.0       |
 |10    |I Walk Alone                                                                   |Crime                                                                  |1948     |6.0      |
 
-Tabel .4 deadbang rekomendasi
+Tabel .6 deadbang rekomendasi
 
-Pada Tabel .4 terlihat rekomendasi dari sistem sesuai dengan yang kita ingingkan berdasarkan genre yang pengguna inginkan dengan menampilkan 10 film rekomendasi.
+Pada Tabel .4 dan .6 terlihat rekomendasi dari sistem sesuai dengan yang kita ingingkan berdasarkan genre yang pengguna inginkan dengan menampilkan 10 film rekomendasi.
 
 mengingat kita mencari rekomendasi berdasarkan genre yang dimiliki oleh MovieTV, mak bisa kita evaluasi dengan rumus :
 
