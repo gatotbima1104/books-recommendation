@@ -7,13 +7,13 @@ Domain yang dipilih pada proyek ini adalah Film, Entertaiment yang berjudul Movi
 ## Latar Belakang
 Movie atau film sangat populer dikalangan remaja saat ini bahkan sekarang bisa dikatakan semua umur cocok dengan film dengan sesuai genrenya masing masing juga, rata rata Remaja menyukai genre Romance , Adventure dan banyak lainya.
 
-oleh karena itu proyek ini dibuat dengan mengadopsi tingginya tingkat menonton film dalam Indonesia atau bahkan dunia, dimana para penonton akan dapat mudah menemui film film yang bergenre dengan keinginan mereka sehingga mereka akan menonton rekomendasi yang model berikan dan itu akan sangat membantu untuk company maupun user itu sendiri.
+oleh karena itu proyek ini dibuat dengan mengadopsi tingginya tingkat menonton film di Indonesia atau bahkan dunia, dimana para penonton akan dapat mudah menemui film film yang bergenre dengan keinginan mereka sehingga mereka akan menonton rekomendasi yang model berikan dan itu akan sangat membantu baik untuk perusahaan pembuat film ataupu bagi penonton itu sendiri.
 
 ## Business Understanding
 
 ### Problem Statements
 
-Berdasarkan Latar belakang diatas bisa kita sumpulkan permasalahan dan goal yang akan dicapai pada proyek ini:
+Berdasarkan Latar belakang diatas bisa kita simpulkan permasalahan dan goal yang akan dicapai pada proyek ini:
 
 - Bagaimana cara analisis data dan pemrosesan data sehingga bisa digunakan pada model rekomendasi?
 - Bagaimana sistem memberikan sejumlah rekomendasi movieTV yang diberikan model oleh pengguna?
@@ -22,7 +22,7 @@ Berdasarkan Latar belakang diatas bisa kita sumpulkan permasalahan dan goal yang
 
 Goals dari proyek ini :
 - Mendapat data yang sudah dianalisis dan bisa digunakan pada model rekomendasi.
-- Merekomendasikan MovieTV kepada user oleh sistem.
+- Merekomendasikan MovieTV kepada user oleh sistem rekomendasi menggunakan teknik content-based filtering.
 
 ### Solution statements
 Berikut merupakan solusi yang bisa dilakukan guna memenuhi goals:
@@ -60,6 +60,11 @@ Dataset yang saya ambil adalah dataset publik yang berasal dari kaggle, berikut 
 - total_votes : total vote yang didapat film
 - description : deksripsi film
 - notes : catatan film
+- humor : skor humor film yang diberikan oleh filmtv
+- rhythm : skor ritme film yang diberikan oleh filmtv
+- effort : skor upaya film yang diberikan oleh filmtv
+- tension : skor ketegangan film yang diberikan oleh filmtv
+- erotism : skor erotisme film yang diberikan oleh filmtv
 
 ## Explatory Data Anlysis
 - Drop Colomn
@@ -67,21 +72,9 @@ pada tahap ini saya drop beberapa kolom yang dapat mengganggu pada saat pemodela
 
 - Handling missing value pada dateset
 
-![total_missing](https://user-images.githubusercontent.com/73319544/192696140-0601547a-b8b9-4272-a7df-389dbab2db23.png)
+Pada dataset masih banyak terdapat missing value pada beberapa kolom dan masih lumayan banyak dan masih tersebar didalamnya dengan total sebanyak **2213 records**, oleh karena itu kita drop seluruh missing value dalam dataset.
 
-Gambar .1 missing value
-
-Pada Gambar .1 Missing value pada dataset masih sangat banyak dan masih tersebar didalamnya dengan total sebanyak **2213 records**, oleh karena itu kita drop seluruh missing value dalam dataset
-
-![after_missing](https://user-images.githubusercontent.com/73319544/192696504-8501f4be-8245-4e49-a66a-639b5f17e2b7.png)
-
-Gambar .2 after missing value
-
-Pada Gambar .2  merupakan dataset yang sudah clean tanpa adanya missing value didalamnya dengan total entries berikut
-
-![total_clean](https://user-images.githubusercontent.com/73319544/192696755-bb1b6727-7156-4d5f-8fd7-52a011ea324f.png)
-
-Gambar .3 data clean
+Setelah berhasil didrop data yang memiliki missing value dataset kini memiliki **34016 records** dan **16 kolom** yang sudah bisa dipakai untuk modelling tanpa adanya missing values.
 
 - Visualisasi Setiap Movie kebanyakan memiliki genre Movie sebagai berikut 
 
@@ -132,6 +125,10 @@ Berikut saya masukkan beberapa title MovieTV yang akan direkomendasikan:
 
 ![dinner](https://user-images.githubusercontent.com/73319544/192699401-63b0413c-a08b-45eb-b538-6e832effbd34.png)
 
+|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |6.0       |
+
 Gambar .6 dinner MovieTV
 
 - berikut outputnya dari rekomendasinya
@@ -140,12 +137,25 @@ Gambar .6 dinner MovieTV
 
 Gambar .7 dinner rekomendasi
 
-
+|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |A Bullet for Joey                                                                                      |Crime                                                                                         |1955  |6.0       |
+|2    |I Wake Up Screaming                                                                   |Crime                                                                  |1941     |8.0      |
+|3   |Tte de turc                                                                                     |Crime                                                                                         |2010  |6.0       |
+|4    |Hunter: Back in Force                                                                    |Crime                                                                  |2003     |4.0      |
+|5   |Roma violenta                                                                                      |Crime                                                                                         |1975  |6.0       |
+|6    |Jack the Ripper                                                                 |Crime                                                                  |1988     |7.0      |
+|7   |MR 73                                                                                     |Crime                                                                                         |2008  |7.0       |
+|8    |Pollisse                                                                   |Crime                                                                  |20011    |7.0      |
+|9   |The Big Easy                                                                                     |Crime                                                                                         |1986  |7.0       |
+|10    |I Walk Alone                                                                   |Crime                                                                  |1948     |6.0      |
 
 ## Evaluation
 pada bagian ini saya mengambil 2 sampel MovieTV yang akan menampilkan rekomendasinya:
 
-![dinner](https://user-images.githubusercontent.com/73319544/192699401-63b0413c-a08b-45eb-b538-6e832effbd34.png)
+|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |Dinner                                                                                      |Comedy                                                                                         |1989  |6.0       |
 
 Gambar .8 dinner MovieTV
 
@@ -155,25 +165,36 @@ Gambar .8 dinner MovieTV
 
 Gambar .9 dinner rekomendasi
 
-![deadbang](https://user-images.githubusercontent.com/73319544/192699607-9fdcd3ae-20c4-46c5-a140-be2963b6e13e.png)
+|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |Dead-Bang                                                                                      |Crime                                                                                         |1989  |6.0       |
 
 Gambar .10 deadbang MovieTV
 
-![deadbang_rekom](https://user-images.githubusercontent.com/73319544/192699660-11677e18-3212-4586-bc5a-7af0c12fc88a.png)
+|no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
+|--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
+|1   |A Bullet for Joey                                                                                      |Crime                                                                                         |1955  |6.0       |
+|2    |I Wake Up Screaming                                                                   |Crime                                                                  |1941     |8.0      |
+|3   |Tte de turc                                                                                     |Crime                                                                                         |2010  |6.0       |
+|4    |Hunter: Back in Force                                                                    |Crime                                                                  |2003     |4.0      |
+|5   |Roma violenta                                                                                      |Crime                                                                                         |1975  |6.0       |
+|6    |Jack the Ripper                                                                 |Crime                                                                  |1988     |7.0      |
+|7   |MR 73                                                                                     |Crime                                                                                         |2008  |7.0       |
+|8    |Pollisse                                                                   |Crime                                                                  |20011    |7.0      |
+|9   |The Big Easy                                                                                     |Crime                                                                                         |1986  |7.0       |
+|10    |I Walk Alone                                                                   |Crime                                                                  |1948     |6.0      |
 
-Gambar .11 deadbang rekomendasi
+Tabel .4 deadbang rekomendasi
 
-Pada gambar .11 terlihat rekomendasi dari sistem sesuai dengan yang kita ingingkan berdasarkan genre yang pengguna inginkan dengan menampilkan 10 film rekomendasi.
+Pada Tabel .4 terlihat rekomendasi dari sistem sesuai dengan yang kita ingingkan berdasarkan genre yang pengguna inginkan dengan menampilkan 10 film rekomendasi.
 
 mengingat kita mencari rekomendasi berdasarkan genre yang dimiliki oleh MovieTV, mak bisa kita evaluasi dengan rumus :
 
-![rumus](https://user-images.githubusercontent.com/73319544/192700544-17d470eb-42fd-4d8c-9296-50d2bcbdf5c3.png)
+#### `P =(  # of our recommendations that are relevant) / (# of items we recommended)`
 
-Gambar .12 rumus 
+Pada rumus diatas kita bisa mengetahui presisi dari rekomendasi yang kita berikan. kita telah memberikan 10 rekomendasi berdasarkan genre Comedy dan Crime, dan sistem memberikan kita rekomendasi yang sama. dengan perhitungan **(rekomendasi yang relevan) / (item yang kita rekomendasikan)** 
 
-Pada gambar .12 kita bisa mengetahui presisi dari rekomendasi yang kita berikan. kita telah memberikan 10 rekomendasi berdasarkan genre Comedy dan Crime, dan sistem memberikan kita rekomendasi yang sama. 
-
-oleh karena itu dengan rumus perhitungan sederhan pada Gambar .12 sistem bisa memilki 100% dalam presisi nya.
+oleh karena itu dengan rumus perhitungan sederhana pada rumus diatas sistem rekomendasi bisa memilki presisi yang sangat baik.
 
 ## Referensi
 - λ.eranga (Nov 29, 2021), Recommendation System with Content-based Filtering from medium https://medium.com/rahasak/recommendation-system-with-content-based-filtering-500231e31a60
