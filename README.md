@@ -2,7 +2,7 @@
 
 ## Domain Proyek
 
-Domain yang dipilih pada proyek ini adalah Film, Entertaiment yang berjudul Movie Recommendation System
+Domain yang dipilih pada proyek ini adalah Film, Entertaiment yang berjudul MovieTV Recommendation System
 
 ## Latar Belakang
 Movie atau film sangat populer dikalangan remaja saat ini bahkan sekarang bisa dikatakan semua umur cocok dengan film dengan sesuai genrenya masing masing juga, rata rata Remaja menyukai genre Romance , Adventure dan banyak lainya.
@@ -16,13 +16,13 @@ oleh karena itu proyek ini dibuat dengan mengadopsi tingginya tingkat menonton f
 Berdasarkan Latar belakang diatas bisa kita sumpulkan permasalahan dan goal yang akan dicapai pada proyek ini:
 
 - Bagaimana cara analisis data dan pemrosesan data sehingga bisa digunakan pada model rekomendasi?
-- Bagaimana sistem memberikan sejumlah rekomendasi movie yang diberikan model oleh pengguna?
+- Bagaimana sistem memberikan sejumlah rekomendasi movieTV yang diberikan model oleh pengguna?
 
 ### Goals
 
 Goals dari proyek ini :
 - Mendapat data yang sudah dianalisis dan bisa digunakan pada model rekomendasi.
-- Merekomendasikan Movie kepada user oleh sistem
+- Merekomendasikan MovieTV kepada user oleh sistem.
 
 ### Solution statements
 Berikut merupakan solusi yang bisa dilakukan guna memenuhi goals:
@@ -33,65 +33,77 @@ Berikut merupakan solusi yang bisa dilakukan guna memenuhi goals:
  * Handling Missing value pada data.
  * Membuat sistem rekomendasi yang bisa memberikan rekomendasi movie kepada user.
 
-- Dalam proyek ini saya menggunakan teknik Content-based Filtering dimana teknik ini akan merekomendasika item yang mirip dengan item yang disukai oleh user, kebetulan pada proyek ini kita gunakan Genre sebagai parameter Content basednya dengan memanfaatkan TF-IDF Vectorizer didalamnya.
+- Dalam proyek ini saya menggunakan teknik Content-based Filtering dimana teknik ini akan merekomendasika item yang mirip dengan item yang disukai oleh user, kebetulan pada proyek ini kita gunakan **genre** sebagai parameter Content basednya dengan memanfaatkan 
+ - TF-IDF Vectorizer  
+ - Cosine similarity
+didalamnya.
 
 ## Data Understanding
 Dataset yang saya gunakan adalah Movie Recommendation yang saya ambil dari kaggle 
-[Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset).
+[Kaggle](https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset).
 
-Pada dataset ini memiliki 45466 entries dan 24 kolom dimana didalamnya seperti berikut:
+Pada dataset ini memiliki **37711** entries dan **19** kolom dimana didalamnya seperti berikut:
 
-- Adult : merupakan informasi bahwa movie diperuntukan untuk dewasa atau tidak
-- belong_to_collection : informasi tentang yang dibawakan oleh Movie
-- Budget : Biaya pembuatan Movie
-- genre : genre dalam movie E.g Adventure, Horror, Thriller  
-- id : Id dari movie 
-- imbd_id : Id Movie
-- original_languages : bahasa yang digunakan dalam Movie
-- original_title : judul atau title Movie
-- overview : sinopsis dari Movie
-- popularity : popularitas dari Movie
-- production_companies : Company yang memproduksi Movie
-- production_countries : Country yang memperoduksi Movie
-- release_date : Waktu rilis movie
-- revenue : Pendapatan dari Movie
-- runtime : Durasi waktu Movie 
-- spoken_languages : bahasa yang dipakai dan diucapkan dalam Movie
-- status : status dalam Movie E.g Released etc.                 
-- title : Judul general Movie
-- vote_average : rata rata Vote dari Movie
-- vote_count  : Total vote count dari Movie
+Dataset yang saya ambil adalah dataset publik yang berasal dari kaggle, berikut keterangan mengenai variabel didalmnya :
 
+- filmtv_id : id film
+- title : judul film
+- year : tahun rilis film
+- genre : genre dalam movie E.g Adventure, Horror, Thrille
+- duration : durasi film
+- country : asal negara film
+- director : direktor film
+- actors : aktor yang memerankan film
+- avg_vote : rata rata vote film
+- public_vote : publik vote film
+- critic_vote : vote kritik pada film
+- total_votes : total vote yang didapat film
+- description : deksripsi film
+- notes : catatan film
 
 ## Explatory Data Anlysis
 - Drop Colomn
-pada tahap ini saya drop beberapa kolom yang dapat mengganggu pada saat pemodelan agar nanti pada tahap pemodelan tidak ada kolom yang menghambat.
+pada tahap ini saya drop beberapa kolom yang dapat mengganggu pada saat pemodelan agar nanti pada tahap pemodelan tidak ada kolom yang menghambat, diantaranya ada _notes,critic_vote_ dan _description_
 
 - Handling missing value pada dateset
 
-![missing](https://user-images.githubusercontent.com/73319544/192563584-3c90323c-a2dc-46ff-bf7b-f496b73fb3d2.png)
+![total_missing](https://user-images.githubusercontent.com/73319544/192696140-0601547a-b8b9-4272-a7df-389dbab2db23.png)
 
+Gambar .1 missing value
 
-Missing value pada dataset masih sangat banyak dan masih tersebar didalamnya, oleh karena itu kita drop seluruh missing value dalam dataset
+Pada Gambar .1 Missing value pada dataset masih sangat banyak dan masih tersebar didalamnya dengan total sebanyak **2213 records**, oleh karena itu kita drop seluruh missing value dalam dataset
 
-![after_missing](https://user-images.githubusercontent.com/73319544/192563619-ba889e29-f1e3-4bae-b9f1-cf0bf3cc8356.png)
+![after_missing](https://user-images.githubusercontent.com/73319544/192696504-8501f4be-8245-4e49-a66a-639b5f17e2b7.png)
 
-Berikut merupakan dataset yang sudah clean tanpa adanya missing value didalamnya dengan total entries berikut
+Gambar .2 after missing value
 
-![total](https://user-images.githubusercontent.com/73319544/192564085-2ffe823c-9e3c-4549-85c6-5f80e17781c9.png)
+Pada Gambar .2  merupakan dataset yang sudah clean tanpa adanya missing value didalamnya dengan total entries berikut
 
-- Visualisasi Setiap Movie kebanyakan memakai bahasa apa yang digunakan oleh Movie
+![total_clean](https://user-images.githubusercontent.com/73319544/192696755-bb1b6727-7156-4d5f-8fd7-52a011ea324f.png)
+Gambar .3 data clean
 
-![language_based](https://user-images.githubusercontent.com/73319544/192564574-61e4777f-361e-41ec-b966-bdc4a80347ac.png)
+- Visualisasi Setiap Movie kebanyakan memiliki genre Movie sebagai berikut 
 
-dapat kita lihat diatas bahwa Movie kebanyakan menggunakan bahasa atau subtitle English didalamnya.
+![genre_terbanyak](https://user-images.githubusercontent.com/73319544/192697326-8853e5b3-acf3-4b17-8b4c-f704751cd7b5.png)
+
+Gambar .4 genre TV
+
+Pada Gambar .4 kita bisa lihat bahwa genre terbanyak dalam Movie dimiliki oleh genre **Drama** dan **Comedy** 
+
+- Visualisasi Setiap Movie kapan dirilis 
+
+![tahun_tv](https://user-images.githubusercontent.com/73319544/192697562-00a62b08-0bb2-4b4f-af59-4ac49828085f.png)
+
+Gambar .5 tahun rilis MovieTV
+
+pada Gambar .5 lihat bahwa semakin tahun produksi film semakin meningkat cukup pesat, dengan adanya teknologi khusus tahun demi tahun film menjadi bagian penting dalam peradaban.
 
 ## Data Preparation
 
 Berikut tahapan dalam pemrosesan data:
 
 ### Menghapus Fitur yang tidak diperlukan
-Karena pada proyek ini kita tidak memerluka fitur seperti 'adult', 'budget', 'homepage', 'tagline', 'poster_path', dan 'video' maka kita bisa drop fitur tersebut.
+Karena pada proyek ini kita tidak memerluka fitur seperti **'notes' 'critics_vote' 'description'** maka kita bisa drop fitur tersebut.
 
 ### Handling missing value
 pada tahap ini dalamprojek kita melakukan handling missing value dengan drop seluruh data yang memiliki missing value agar pada saat modelling tidak terhabat oleh data yang missing.
@@ -100,44 +112,70 @@ ada dua teknik dalam handling missing value diantaranya adalah drop value yang k
 ## Modeling
 
 ### Content Based Filtering
-Content Based Filtering merekomendasikan item yang mirip dengan item sebelumnya yang disukai atau dipilih oleh pengguna. Kemiripan item dihitung berdasarkan pada fitur-fitur yang ada pada item yang dibandingkan.
+Content Based Filtering merekomendasikan item yang mirip dengan item sebelumnya yang disukai atau dipilih oleh penonton MovieTV, kemiripan item dihitung berdasarkan fitur yang ada dalam item yang dibandingkan, berikut merupakan parameternya :
 
-disini saya menggunakan TF-IDF Vectorize untuk menemukan representasi dari setiap genre pada movie berikut outputnya :
+- movie_name : berisi nama MovieTV yang ingin dicari rekomendasinya.
+- similarity_data : berisi dataframe yang berisi similarity yang telah didefinisakan menggunakan cosine similarity.
+- items : berisi nama nama fitur yang akan dimunculkan pada saat direkomendasikan, disini saya menaruh fitur **'title', 'year', 'genre', 'year', 'public_vote'**.
+- k : banyaknya MovieTV film yang ingin direkomendasikan, disini saya menaruh 10 rekomendasi film yang akan ditampilkan
 
-![genres](https://user-images.githubusercontent.com/73319544/192570237-4f70f30e-3a17-4938-a0fb-dc48575e9e86.png)
+-kelebihan
+ -  mudah digunakan untuk mencari kemiripan pada data untuk rekomendasi.
+ 
+-kekurangan
+ - item yang akan dimunculkan terbatas.
 
-selanjutnya melakukan fit dan transformasi kedalam bentuk matriks. dengan teknik kesamaan (similarity degree) antar movie untuk menghitung derajat kesamaan dengan fungsi cosine_similarity dari library sklearn. 
+### Hasil pemodelan
 
-![rumus](https://user-images.githubusercontent.com/73319544/192570880-f316903a-7285-4e9c-b564-b6d12095a251.png)
+Berikut saya masukkan beberapa title MovieTV yang akan direkomendasikan:
 
-- berikut outputnya
+![dinner](https://user-images.githubusercontent.com/73319544/192699401-63b0413c-a08b-45eb-b538-6e832effbd34.png)
 
-![sigmoid](https://user-images.githubusercontent.com/73319544/192571066-caf44e98-f06c-44af-b3e9-7e528ab44394.png)
+Gambar .6 dinner MovieTV
 
-kemudian mengambil sejumlah nilai k tertinggi dari similarity data kemudian mengambil data dari bobot (tingkat kesamaan) tertinggi ke terendah.
+- berikut outputnya dari rekomendasinya
 
-kemudia saya menguji akurasi model pada sistem rekomendasi dengan memasukkan judul Jurassic Park sistem akan merekomendasikan film yang mirip dengan Jurassci Park, berikut outputnya :
+![dinner_rekom](https://user-images.githubusercontent.com/73319544/192699449-db57f452-a5f1-46c4-9e76-99e9d93637a6.png)
 
-![jurasik](https://user-images.githubusercontent.com/73319544/192572488-e248f365-0535-416b-b6a6-715926d15354.png)
-
-berdasarkan output diatas yang telah dimasukkan, kita bisa lihat rekomendasi dibawah ini yang diberikan oleh sistem yang diharapkan adalah film yang bergenre sama.
-
-berikut output yang diberikan sistem:
-
-![rekomendasi](https://user-images.githubusercontent.com/73319544/192573534-16a33677-1956-4366-b1e0-f85a140108ed.png)
+Gambar .7 dinner rekomendasi
 
 
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
+pada bagian ini saya mengambil 2 sampel MovieTV yang akan menampilkan rekomendasinya:
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+![dinner](https://user-images.githubusercontent.com/73319544/192699401-63b0413c-a08b-45eb-b538-6e832effbd34.png)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Gambar .8 dinner MovieTV
 
-**---Ini adalah bagian akhir laporan---**
+- berikut outputnya dari rekomendasinya
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+![dinner_rekom](https://user-images.githubusercontent.com/73319544/192699449-db57f452-a5f1-46c4-9e76-99e9d93637a6.png)
+
+Gambar .9 dinner rekomendasi
+
+![deadbang](https://user-images.githubusercontent.com/73319544/192699607-9fdcd3ae-20c4-46c5-a140-be2963b6e13e.png)
+
+Gambar .10 deadbang MovieTV
+
+![deadbang_rekom](https://user-images.githubusercontent.com/73319544/192699660-11677e18-3212-4586-bc5a-7af0c12fc88a.png)
+
+Gambar .11 deadbang rekomendasi
+
+Pada gambar .11 terlihat rekomendasi dari sistem sesuai dengan yang kita ingingkan berdasarkan genre yang pengguna inginkan dengan menampilkan 10 film rekomendasi.
+
+mengingat kita mencari rekomendasi berdasarkan genre yang dimiliki oleh MovieTV, mak bisa kita evaluasi dengan rumus :
+
+![rumus](https://user-images.githubusercontent.com/73319544/192700544-17d470eb-42fd-4d8c-9296-50d2bcbdf5c3.png)
+
+Gambar .12 rumus 
+
+Pada gambar .12 kita bisa mengetahui presisi dari rekomendasi yang kita berikan. kita telah memberikan 10 rekomendasi berdasarkan genre Comedy dan Crime, dan sistem memberikan kita rekomendasi yang sama. 
+
+oleh karena itu dengan rumus perhitungan sederhan pada Gambar .12 sistem bisa memilki 100% dalam presisi nya.
+
+## Referensi
+- λ.eranga (Nov 29, 2021), Recommendation System with Content-based Filtering from medium https://medium.com/rahasak/recommendation-system-with-content-based-filtering-500231e31a60
+- kunisetti s. (Springer, Singapore), Content-Based Movie Recommendation System Using Genre Correlation, from https://d1wqtxts1xzle7.cloudfront.net/62049148/contentbased20200209-27698-l8hk2i-with-cover-page-v2.pdf?Expires=1664349281&Signature=Odckc84PpURE5-xCpkpqUGGbk2VBLqRu-vBW-MmxGmhZzx4OnEHyY~Z2nQIknqVSeCcZaaufStSZxOsh2hrIayAoxOxmMgC0f7q7FHQprbl4MfYtZXKACJ6thEltg0e-9GoVYle-drD6K47VvA6lE0QnMwiAesyjH4vwDwtjkAOETaW~5~8eCOno7eWKp5koROKmbNgXmIPo593N1nmBjG6G3G9KXzTGxlS0Ek2JmgQl1OzcBz8qJQAj0rGMP4GHF0kgz1AzaanbRRCfEpdumjYbXbz26N5M39GoBRIXPxWdBCSZ6O5pc9oXTtmHt1qB7O8ldBcndN~E6OU-mBSzIQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+
+
