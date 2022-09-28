@@ -150,13 +150,15 @@ Tabel .2 dinner rekomendasi
 ## Evaluation
 pada bagian ini saya mengambil 2 sampel MovieTV yang akan menampilkan rekomendasinya:
 
+- Rekomendasi Pada film **Dinner** yang bergenre **Comedy**
+
 |no|title                                                                                                |genre                                                                                                                        |year   |country |
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
 |1   |Dinner                                                                                      |Comedy                                                                                         |1989  |United States       |
 
 Tabel .3 dinner MovieTV
 
-- berikut outputnya dari rekomendasinya
+- berikut output dari rekomendasinya film **Dinner**
 
 |no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
@@ -174,13 +176,15 @@ Tabel .3 dinner MovieTV
 Tabel .4 dinner rekomendasi
 
 
-
+- Rekomendasi pada film **Dead-bang** bergenre **Crime**
 
 |no|title                                                                                                |genre                                                                                                                        |year   |country |
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
 |1   |Dead-Bang                                                                                      |Crime                                                                                         |1989  |United States       |
 
 Tabel .5 deadbang MovieTV
+
+- Output rekomendasi dari film **Dead-Bang**
 
 |no|title                                                                                                |genre                                                                                                                        |year   |public_vote|
 |--------|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-------|--------|
